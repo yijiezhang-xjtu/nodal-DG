@@ -1,0 +1,58 @@
+# Parameter file for 2D NDG software
+
+# Title of the simulation
+title                   = coupled flat
+
+# Convenience Parameters
+log                     = .true.            # ".true." if log should be displayed on screen, otherwise ".false."
+
+# Number of Processors
+nproc                   = 56                
+
+# Model parameters
+externalfilename        = external_model.grd   # File containing the external model
+extvel                  = .false.           # ".true." if external velocity model should be loaded, otherwise ".false."
+
+# Parameters regarding seismograms
+subsampling_factor      = 1                 # reduce sampling rate of seismograms by this factor to create smaller but less accurate files
+autoshift               = .true.            # Shifts the time-axis by the "width" of the used wavelet. For a Ricker or Gaussian the maximum will be at t=0. If set to .false. plott0 is used instead.
+plott0                  = 0.                # Offset for the seismogram. Default is 0.
+div                     = .false.           # ".true." if the radial component of the seimogram is to be calculated, otherwise ".false."
+curl                    = .false.           # ".true." if the tangential component of the seimogram is to be calculated, otherwise ".false."
+
+# Movie parameters
+movie                   = .true.            # if ".true." movie files are created, otherwise ".false."
+frame                   = 1000               # Number of time steps for each frame of the movie
+save_movie_trimesh      = .true.            # Create files with average in each element
+save_movie_points       = .true.            # Create files with data for each point
+save_movie_displacement = .false.            # Plot displacement field
+save_movie_velocity     = .true.            # Plot velocity field
+save_movie_stress       = .false.            # Plot stress field
+
+# Parameters for Timeintegration
+timeint                 = 1                 # which timeintegration?  1:RK4 2:TVD-RK3 3:LSE-RK4
+autont                  = .false.           # automatic calculation of number of timesteps: t_total/timestep(dt or autodt)
+nt                      = 5000              # Number of timesteps (nt used if autont is .false.)
+t_total                 = 0.4               # Total simulated time (t_total = nt*dt)
+autodt                  = .true.            # automatic calculation of dt
+dt                      = 5.0e-5            # if autodt =.false. choose dt manually
+cfl                     = 0.4               # cfl value for dt
+simt0                   = 0.                # starting time of simulation
+
+# pmlparameters
+set_pml                 = .true.            # if ".true." pml are set else absorbing boundary conditions are set
+pml_delta               = 50                # pml thickness
+pml_rc                  = 0.01             # pml reclection coff
+pml_kmax                = 1.0               # pml kmax
+pml_afac                = 1.0               # factor for amax
+use_trigger             = .false.           # use sta_lta trigger for energy monitoring
+avg_window1             = 10                # lta window
+avg_window2             = 2                 # sta window
+sta_lta_trigger         = 0.1               # threshold
+
+# Sources
+shift_sources           = .true.            # if ".true." then the sources will be shifted by 1.2/f0, otherwise the maximum of the wavelet is at t = simt0 + delay (see source parameter file).
+
+# Receiver
+global_rec_angle        = .true.            # If ".true." the angle given below (rec_angle) will be used for all receivers, otherwise the angle has to be provided for each receiver indepentently in the receiver file.
+rec_angle               = 0.0               # rotate receivers about degree
