@@ -1,5 +1,5 @@
 ## nodal-DG
-This code is based on the coed "NEXD-2D". Detailed content can be referred to "https://github.com/seismology-RUB/NEXD-2D"
+This code is based on "NEXD-2D". Detailed content can be referred to "https://github.com/seismology-RUB/NEXD-2D"
 
 ## Requirements
 
